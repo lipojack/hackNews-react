@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 //import list from './list';
-import { Grid, Row, FormGroup } from 'react-bootstrap';
+import { Grid, Row } from 'react-bootstrap';
+import Button from './Components/Button';
+import Table from './Components/Table';
+import Search from './Components/Search';
 import './App.css';
 
 const DEFAULT_QUERY = 'react';
@@ -96,7 +99,7 @@ class App extends Component {
       <div>    
         <Grid fluid>
           <Row>
-            <div className="jumbotron text-center">
+            <div className="jumbotron jumbotron-fluid text-center">
               <Search 
                 onChange = {this.searchValue} 
                 value = {searchTerm}
@@ -114,7 +117,6 @@ class App extends Component {
               removeItem = {this.removeItem}
             />
         
-          
             <div className = "text-center alert">
               <Button
                 className = "btn btn-success"
@@ -125,75 +127,8 @@ class App extends Component {
           </Row>
         </Grid>
       </div>
-
-      
-      
     );
   }
 }
-
-const Search = ({onChange, value, children, onSubmit}) =>{
-  return(
-    <form onSubmit = { onSubmit }>
-      <FormGroup>
-        <h1 style={{color:'#F96D00'}}>{children}</h1>
-        <hr style={{color:'#000000', width:'100px'}}/>
-        
-        <div className = 'input-group'>
-          
-          <input
-            className = 'form-control width100 searchForm'
-            type = 'text' 
-            onChange = { onChange } 
-            value = {value} 
-          />
-          
-          <span 
-            className = 'input-group-btn'>
-            <Button className = 'btn btn-primary searchBtn' type = 'submit'>
-              Search
-            </Button>
-          </span>
-        </div>
-      </FormGroup>
-    </form>
-  )
-}
-
-const Table = ({list, searchTerm, removeItem}) =>{
-  return(
-    <div className='col-sm-10 col-sm-offset-1'>
-      {
-        // Don't use index as key : https://medium.com/@robinpokorny/index-as-a-key-is-an-anti-pattern-e0349aece318
-        // list.filter( isSearched(searchTerm) ).map((item)=>
-        list.map((item)=>
-            <div key={item.objectID}>
-              <h2><a href ={item.url}>{item.title}</a></h2>
-              <h4>
-                
-                { item.author } | {item.num_comments} comments | {item.points} points
-                
-                <Button
-                  className = 'btn btn-danger btn-xs'
-                  type = 'button'
-                  onClick = {()=>removeItem(item.objectID)}>
-                  Remove
-                </Button>
-              
-              </h4><hr/>
-            </div>
-        )
-      }
-    </div>  
-  )
-}
-
-const Button = ({ onClick, children, className }) =>
-  <button 
-    onClick = { onClick }
-    className = { className }
-    >
-    {children}
-  </button>
 
 export default App;
