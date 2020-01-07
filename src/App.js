@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import { Grid, Row, FormGroup } from 'react-bootstrap';
 import './App.css';
 
-const YOYO = "ee";
 const DEFAULT_QUERY = 'react';
 const DEFAULT_PAGE = 0;
 const PATH_BASE = 'https://hn.algolia.com/api/v1';
